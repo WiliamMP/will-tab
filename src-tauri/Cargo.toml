@@ -1,0 +1,25 @@
+[package]
+name = "will-tab"
+version = "0.1.0"
+description = "Guitar tab editor that plays what you write"
+authors = ["WiliamMP"]
+edition = "2024"
+
+[lib]
+# the _lib suffix keeps the lib name apart from the bin name (a Windows issue, cargo#8519)
+name = "will_tab_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = [] }
+tauri-plugin-dialog = "2"
+
+[profile.release]
+codegen-units = 1
+lto = true
+opt-level = 3
+panic = "abort"
+strip = true
